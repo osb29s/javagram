@@ -1,45 +1,35 @@
 package com.rainett.javagram.config;
 
-import com.rainett.javagram.update.appready.impl.CommandDto;
-import java.util.Map;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 /**
- * Configures bot credentials. Looks for properties in application .properties/.yaml file in
- * resources folder
+ * Configuration properties for the Telegram Bot.
+ * <p>
+ * This class binds properties with the prefix "bot" from the application configuration (either
+ * application.properties or application.yml). It requires the following properties:
+ * </p>
+ * <ul>
+ *   <li><b>bot.path:</b> The bot webhook path (for example, a ngrok URL).</li>
+ *   <li><b>bot.username:</b> The bot username, including the "@" symbol.</li>
+ *   <li><b>bot.token:</b> The bot token provided by BotFather in Telegram.</li>
+ * </ul>
  */
-@Getter
-@Setter
-@ToString
-@Configuration
-@PropertySource(value =
-        {"classpath:application.yml", "classpath:application.properties"},
-        ignoreResourceNotFound = true
-)
+@Data
 @ConfigurationProperties(prefix = "bot")
 public class BotConfig {
     /**
-     * Bot webhook path. E.g. if you are using ngrok, place here ngrok redirect URL
+     * Bot webhook path. For example, if you are using ngrok, place the ngrok redirect URL here.
      */
     private String path;
 
     /**
-     * Bot username. "@" symbol should be placed too
+     * Bot username. The "@" symbol should be included.
      */
     private String username;
 
     /**
-     * Bot token. Copy it from BotFather in telegram
+     * Bot token. Copy it from BotFather on Telegram.
      */
     private String token;
-
-    /**
-     * Commands' descriptions and scopes. If not found, defaults are used
-     */
-    private Map<String, CommandDto> commands;
 }
