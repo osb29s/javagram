@@ -76,13 +76,7 @@ public class ActionComparatorServiceImpl implements ActionComparatorService {
                     String.format("Action comparator not found for annotation type [%s]",
                             annotationType));
         }
-        try {
-            return (AnnotationComparator<T>) comparator;
-        } catch (ClassCastException e) {
-            throw new IllegalStateException(
-                    String.format("Mismatched comparator type for annotation [%s]",
-                            annotationType), e);
-        }
+        return (AnnotationComparator<T>) comparator;
     }
 
     /**
@@ -111,13 +105,10 @@ public class ActionComparatorServiceImpl implements ActionComparatorService {
      * @param <T>             the annotation type.
      * @return the annotation found on the action’s class.
      * @throws IllegalArgumentException if the action is {@code null} or the annotation
-     * is not present.
+     *                                  is not present.
      */
     private static <T extends Annotation> T extractAnnotation(Action action,
                                                               Class<T> annotationClass) {
-        if (action == null) {
-            throw new IllegalArgumentException("Action instance cannot be null.");
-        }
         T annotation = action.getClass().getAnnotation(annotationClass);
         if (annotation == null) {
             throw new IllegalArgumentException(String.format(

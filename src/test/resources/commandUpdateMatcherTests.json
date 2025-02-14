@@ -1,0 +1,27 @@
+[
+  {
+    "command": "/hello",
+    "text": "hello",
+    "expected": false
+  },
+  {
+    "command": "/hello",
+    "text": "/hello",
+    "expected": true
+  },
+  {
+    "command": "/hello",
+    "text": "/helloo",
+    "expected": false
+  },
+  {
+    "command": "/hell",
+    "text": "/hello",
+    "expected": false
+  },
+  {
+    "command": "/hello",
+    "text": "/hello@testbot",
+    "expected": true
+  }
+]

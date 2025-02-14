@@ -1,0 +1,172 @@
+[
+  {
+    "annotation1": {
+      "equals": "",
+      "regex": "",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "annotation2": {
+      "equals": "",
+      "regex": "",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "expected": 0
+  },
+  {
+    "annotation1": {
+      "equals": "hello",
+      "regex": "",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "annotation2": {
+      "equals": "",
+      "regex": "",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "expected": 1
+  },
+  {
+    "annotation1": {
+      "equals": "hello",
+      "regex": "",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "annotation2": {
+      "equals": "hello everyone",
+      "regex": "",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "expected": -1
+  },
+  {
+    "annotation1": {
+      "equals": "equal",
+      "regex": "",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "annotation2": {
+      "equals": "lauqe",
+      "regex": "",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "expected": 0
+  },
+  {
+    "annotation1": {
+      "equals": "it is",
+      "regex": "",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "annotation2": {
+      "equals": "",
+      "regex": "",
+      "startsWith": "it is not",
+      "contains": "",
+      "endsWith": ""
+    },
+    "expected": 1
+  },
+  {
+    "annotation1": {
+      "equals": "",
+      "regex": "bigger",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "annotation2": {
+      "equals": "",
+      "regex": "small",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "expected": 1
+  },
+  {
+    "annotation1": {
+      "equals": "",
+      "regex": "",
+      "startsWith": "",
+      "contains": "small",
+      "endsWith": ""
+    },
+    "annotation2": {
+      "equals": "",
+      "regex": "",
+      "startsWith": "",
+      "contains": "bigger",
+      "endsWith": ""
+    },
+    "expected": -1
+  },
+  {
+    "annotation1": {
+      "equals": "",
+      "regex": "",
+      "startsWith": "this is more specific",
+      "contains": "",
+      "endsWith": ""
+    },
+    "annotation2": {
+      "equals": "",
+      "regex": "",
+      "startsWith": "",
+      "contains": "even though this one is way bigger",
+      "endsWith": ""
+    },
+    "expected": 1
+  },
+  {
+    "annotation1": {
+      "equals": "this is more specific",
+      "regex": "",
+      "startsWith": "",
+      "contains": "",
+      "endsWith": ""
+    },
+    "annotation2": {
+      "equals": "",
+      "regex": "",
+      "startsWith": "",
+      "contains": "even though this one is way bigger",
+      "endsWith": ""
+    },
+    "expected": 1
+  },
+  {
+    "annotation1": {
+      "equals": "",
+      "regex": "",
+      "startsWith": "",
+      "contains": "this may seem good",
+      "endsWith": ""
+    },
+    "annotation2": {
+      "equals": "",
+      "regex": "",
+      "startsWith": "but",
+      "contains": "this one",
+      "endsWith": "is even better"
+    },
+    "expected": -1
+  }
+]

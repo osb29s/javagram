@@ -1,0 +1,29 @@
+[
+  {
+    "annotation1": {
+      "value": "/command"
+    },
+    "annotation2": {
+      "value": "/start"
+    },
+    "expected": 1
+  },
+  {
+    "annotation1": {
+      "value": "/command"
+    },
+    "annotation2": {
+      "value": "/another"
+    },
+    "expected": 0
+  },
+  {
+    "annotation1": {
+      "value": "/start"
+    },
+    "annotation2": {
+      "value": "/command"
+    },
+    "expected": -1
+  }
+]

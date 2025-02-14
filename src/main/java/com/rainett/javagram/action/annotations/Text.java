@@ -35,8 +35,8 @@ public @interface Text {
     String endsWith() default "";
 
     /**
-     * Weather the text should be case-sensitive
-     * @return true, if the text should be case-sensitive
+     * Specifies the regular expression, that will trigger the action on an update
+     * @return regular expression
      */
-    boolean caseSensitive() default false;
+    String regex() default "";
 }

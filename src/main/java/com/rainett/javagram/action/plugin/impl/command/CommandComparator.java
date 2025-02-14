@@ -18,7 +18,7 @@ public class CommandComparator implements AnnotationComparator<Command> {
      */
     @Override
     public int compare(Command c1, Command c2) {
-        return c1.value().length() - c2.value().length();
+        return Integer.compare(c1.value().length(), c2.value().length());
     }
 
     /**

@@ -1,0 +1,90 @@
+[
+  {
+    "annotation": {
+      "equals": "hello",
+      "contains": "",
+      "startsWith": "",
+      "endsWith": "",
+      "regex": ""
+    },
+    "text": "hello",
+    "expected": true
+  },
+  {
+    "annotation": {
+      "equals": "hello",
+      "contains": "",
+      "startsWith": "",
+      "endsWith": "",
+      "regex": ""
+    },
+    "text": "hello world",
+    "expected": false
+  },
+  {
+    "annotation": {
+      "equals": "",
+      "contains": "world",
+      "startsWith": "",
+      "endsWith": "",
+      "regex": ""
+    },
+    "text": "hello world",
+    "expected": true
+  },
+  {
+    "annotation": {
+      "equals": "",
+      "contains": "",
+      "startsWith": "hello",
+      "endsWith": "",
+      "regex": ""
+    },
+    "text": "hello world",
+    "expected": true
+  },
+  {
+    "annotation": {
+      "equals": "",
+      "contains": "",
+      "startsWith": "",
+      "endsWith": "world",
+      "regex": ""
+    },
+    "text": "hello world",
+    "expected": true
+  },
+  {
+    "annotation": {
+      "equals": "",
+      "contains": "",
+      "startsWith": "",
+      "endsWith": "",
+      "regex": "h.*d"
+    },
+    "text": "hello world",
+    "expected": true
+  },
+  {
+    "annotation": {
+      "equals": "",
+      "contains": "abc",
+      "startsWith": "start",
+      "endsWith": "end",
+      "regex": ""
+    },
+    "text": "start middle end",
+    "expected": false
+  },
+  {
+    "annotation": {
+      "equals": "",
+      "contains": "middle",
+      "startsWith": "start",
+      "endsWith": "end",
+      "regex": ""
+    },
+    "text": "start middle end",
+    "expected": true
+  }
+]

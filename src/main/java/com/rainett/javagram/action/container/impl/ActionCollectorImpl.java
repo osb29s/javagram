@@ -5,7 +5,6 @@ import com.rainett.javagram.action.annotations.BotAction;
 import com.rainett.javagram.action.comparator.ActionComparatorService;
 import com.rainett.javagram.action.container.ActionCollector;
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -44,8 +43,7 @@ public class ActionCollectorImpl implements ActionCollector {
                 .stream()
                 .filter(this::isAction)
                 .map(this::castToAction)
-                .collect(Collectors.groupingBy(this::extractAnnotationType,
-                        Collectors.toCollection(ArrayList::new)));
+                .collect(Collectors.groupingBy(this::extractAnnotationType));
 
         actions.forEach(this::sortActions);
         return actions;
@@ -90,7 +88,7 @@ public class ActionCollectorImpl implements ActionCollector {
      * that is meta-annotated with {@link BotAction}.
      * @param action the action to extract the annotation type from
      * @return the annotation type
-     * @throws UnsupportedOperationException if no annotation is found
+     * @throws IllegalStateException if no annotation is found
      */
     private Class<? extends Annotation> extractAnnotationType(Action action) {
         Objects.requireNonNull(action, "Action must not be null");
@@ -100,7 +98,7 @@ public class ActionCollectorImpl implements ActionCollector {
                 return annotation.annotationType();
             }
         }
-        throw new UnsupportedOperationException(
+        throw new IllegalStateException(
                 String.format("Cannot find required annotation for action [%s].",
                         action.getClass().getName())
         );
