@@ -11,6 +11,7 @@ import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.ToString;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -57,10 +58,11 @@ class CommandUpdateMatcherTest {
         assertEquals(Command.class, commandUpdateMatcher.getAnnotationType());
     }
 
+    @Data
     private static class JsonTestCase {
-        public String command;
-        public String text;
-        public boolean expected;
+        private String command;
+        private String text;
+        private boolean expected;
     }
 
     @AllArgsConstructor

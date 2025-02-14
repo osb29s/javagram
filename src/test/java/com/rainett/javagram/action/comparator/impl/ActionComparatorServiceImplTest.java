@@ -1,18 +1,19 @@
 package com.rainett.javagram.action.comparator.impl;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.rainett.javagram.action.Action;
 import com.rainett.javagram.action.comparator.AnnotationComparator;
-import org.junit.jupiter.api.Test;
-
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import org.junit.jupiter.api.Test;
 import org.telegram.telegrambots.meta.api.objects.Update;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for ActionComparatorServiceImpl.

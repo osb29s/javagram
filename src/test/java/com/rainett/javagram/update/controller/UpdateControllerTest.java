@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(UpdateController.class)
 class UpdateControllerTest {
+    private static final String UPDATE_JSON = "{\"message\":{\"text\":\"Test message\"}}";
 
     @Autowired
     private MockMvc mockMvc;
@@ -37,8 +38,6 @@ class UpdateControllerTest {
             return new UpdateController(updateService);
         }
     }
-
-    private static final String UPDATE_JSON = "{\"message\":{\"text\":\"Test message\"}}";
 
     @Test
     void onUpdateReceived_Success() throws Exception {

@@ -50,6 +50,7 @@ public class TextUpdateMatcher extends AbstractActionUpdateMatcher<Text> {
 
     private interface CaseMatcher {
         boolean test(Text text, String messageText);
+
         boolean isCase(Text text);
     }
 

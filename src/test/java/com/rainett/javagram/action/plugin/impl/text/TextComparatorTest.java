@@ -1,6 +1,7 @@
 package com.rainett.javagram.action.plugin.impl.text;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +10,8 @@ import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.stream.Stream;
+import lombok.Data;
+import lombok.ToString;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -48,20 +51,23 @@ class TextComparatorTest {
         }
     }
 
+    @Data
     private static class JsonTestCase {
-        public AnnotationData annotation1;
-        public AnnotationData annotation2;
-        public int expected;
+        private AnnotationData annotation1;
+        private AnnotationData annotation2;
+        private int expected;
     }
 
+    @Data
     private static class AnnotationData {
-        public String equals;
-        public String contains;
-        public String startsWith;
-        public String endsWith;
-        public String regex;
+        private String equals;
+        private String contains;
+        private String startsWith;
+        private String endsWith;
+        private String regex;
     }
 
+    @ToString
     private static class TestTextAnnotation implements Text {
         private final String equals;
         private final String contains;
@@ -105,17 +111,6 @@ class TextComparatorTest {
         @Override
         public Class<? extends Annotation> annotationType() {
             return Text.class;
-        }
-
-        @Override
-        public String toString() {
-            return "TestTextAnnotation{" +
-                   "equals='" + equals + '\'' +
-                   ", contains='" + contains + '\'' +
-                   ", startsWith='" + startsWith + '\'' +
-                   ", endsWith='" + endsWith + '\'' +
-                   ", regex='" + regex + '\'' +
-                   '}';
         }
     }
 }

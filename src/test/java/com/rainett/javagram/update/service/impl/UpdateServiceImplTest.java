@@ -20,7 +20,6 @@ import org.mockito.MockitoAnnotations;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 class UpdateServiceImplTest {
-
     @Mock
     private ActionContainer actionContainer;
 
@@ -50,7 +49,8 @@ class UpdateServiceImplTest {
     @Test
     void handleUpdate_ActionNotFound() {
         Update update = mock(Update.class);
-        when(actionContainer.findByUpdate(update)).thenThrow(new ActionNotFoundException("Action not found"));
+        when(actionContainer.findByUpdate(update)).thenThrow(
+                new ActionNotFoundException("Action not found"));
 
         updateService.handleUpdate(update);
 
@@ -61,7 +61,8 @@ class UpdateServiceImplTest {
     @Test
     void handleUpdate_UnknownUpdateType() {
         Update update = mock(Update.class);
-        when(actionContainer.findByUpdate(update)).thenThrow(new UnknownUpdateTypeException("Unknown update type"));
+        when(actionContainer.findByUpdate(update)).thenThrow(
+                new UnknownUpdateTypeException("Unknown update type"));
 
         updateService.handleUpdate(update);
 
@@ -72,7 +73,8 @@ class UpdateServiceImplTest {
     @Test
     void handleUpdate_GenericException() {
         Update update = mock(Update.class);
-        when(actionContainer.findByUpdate(update)).thenThrow(new RuntimeException("Unexpected error"));
+        when(actionContainer.findByUpdate(update)).thenThrow(
+                new RuntimeException("Unexpected error"));
 
         updateService.handleUpdate(update);
 
