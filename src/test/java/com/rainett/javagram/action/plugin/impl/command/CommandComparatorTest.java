@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.stream.Stream;
+import lombok.Data;
 import lombok.ToString;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -51,14 +52,16 @@ class CommandComparatorTest {
         }
     }
 
+    @Data
     private static class JsonTestCase {
-        public AnnotationData annotation1;
-        public AnnotationData annotation2;
-        public int expected;
+        private AnnotationData annotation1;
+        private AnnotationData annotation2;
+        private int expected;
     }
 
+    @Data
     private static class AnnotationData {
-        public String value;
+        private String value;
     }
 
     @ToString

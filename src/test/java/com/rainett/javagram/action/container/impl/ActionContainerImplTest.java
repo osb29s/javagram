@@ -1,5 +1,12 @@
 package com.rainett.javagram.action.container.impl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import com.rainett.javagram.action.Action;
 import com.rainett.javagram.action.actionmatcher.ActionUpdateMatcher;
 import com.rainett.javagram.action.annotations.BotAction;
@@ -7,20 +14,15 @@ import com.rainett.javagram.action.container.ActionCollector;
 import com.rainett.javagram.action.updatematcher.UpdateTypeResolver;
 import com.rainett.javagram.exceptions.ActionNotFoundException;
 import com.rainett.javagram.exceptions.UnknownUpdateTypeException;
-import java.lang.reflect.Method;
-import lombok.SneakyThrows;
-import org.junit.jupiter.api.Test;
-import org.telegram.telegrambots.meta.api.objects.Update;
-
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.Test;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
  * Unit tests for ActionContainerImpl.

@@ -1,12 +1,14 @@
 package com.rainett.javagram.action.container.impl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import com.rainett.javagram.action.Action;
 import com.rainett.javagram.action.annotations.BotAction;
 import com.rainett.javagram.action.comparator.ActionComparatorService;
-import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.telegram.telegrambots.meta.api.objects.Update;
-
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -14,9 +16,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
  * Tests for {@link ActionCollectorImpl}.

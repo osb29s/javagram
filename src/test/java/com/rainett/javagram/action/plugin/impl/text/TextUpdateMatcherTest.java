@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.stream.Stream;
+import lombok.Data;
+import lombok.ToString;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -31,13 +33,7 @@ class TextUpdateMatcherTest {
     @ParameterizedTest
     @MethodSource("jsonTestCases")
     void testTextUpdateMatcher(JsonTestCase testCase) {
-        Text annotation = new TestTextAnnotation(
-                testCase.annotation.equals != null ? testCase.annotation.equals : "",
-                testCase.annotation.contains != null ? testCase.annotation.contains : "",
-                testCase.annotation.startsWith != null ? testCase.annotation.startsWith : "",
-                testCase.annotation.endsWith != null ? testCase.annotation.endsWith : "",
-                testCase.annotation.regex != null ? testCase.annotation.regex : ""
-        );
+        Text annotation = new TestTextAnnotation(testCase.annotation);
 
         Message message = new Message();
         message.setText(testCase.text);
@@ -54,25 +50,38 @@ class TextUpdateMatcherTest {
         assertEquals(Text.class, textUpdateMatcher.getAnnotationType());
     }
 
+    @Data
     private static class JsonTestCase {
-        public AnnotationData annotation;
-        public String text;
-        public boolean expected;
+        private AnnotationData annotation;
+        private String text;
+        private boolean expected;
     }
 
+    @Data
     private static class AnnotationData {
-        public String equals;
-        public String contains;
-        public String startsWith;
-        public String endsWith;
-        public String regex;
+        private String equals;
+        private String contains;
+        private String startsWith;
+        private String endsWith;
+        private String regex;
     }
 
-    private record TestTextAnnotation(String equals,
-                                      String contains,
-                                      String startsWith,
-                                      String endsWith,
-                                      String regex) implements Text {
+    @ToString
+    private static class TestTextAnnotation implements Text {
+        private final String equals;
+        private final String contains;
+        private final String startsWith;
+        private final String endsWith;
+        private final String regex;
+
+        public TestTextAnnotation(AnnotationData data) {
+            this.equals = data.equals;
+            this.contains = data.contains;
+            this.startsWith = data.startsWith;
+            this.endsWith = data.endsWith;
+            this.regex = data.regex;
+        }
+
         @Override
         public String equals() {
             return equals;
@@ -101,17 +110,6 @@ class TextUpdateMatcherTest {
         @Override
         public Class<? extends Annotation> annotationType() {
             return Text.class;
-        }
-
-        @Override
-        public String toString() {
-            return "TestTextAnnotation{" +
-                   "equals='" + equals + '\'' +
-                   ", contains='" + contains + '\'' +
-                   ", startsWith='" + startsWith + '\'' +
-                   ", endsWith='" + endsWith + '\'' +
-                   ", regex='" + regex + '\'' +
-                   '}';
         }
     }
 }

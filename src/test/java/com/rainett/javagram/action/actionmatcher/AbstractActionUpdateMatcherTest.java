@@ -1,14 +1,13 @@
 package com.rainett.javagram.action.actionmatcher;
 
-import com.rainett.javagram.action.Action;
-import org.junit.jupiter.api.Test;
-import org.telegram.telegrambots.meta.api.objects.Update;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.rainett.javagram.action.Action;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.jupiter.api.Test;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
  * Unit tests for {@link AbstractActionUpdateMatcher} using a concrete test subclass.
