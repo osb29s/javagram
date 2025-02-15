@@ -36,6 +36,13 @@ public class ActionContainerImpl implements ActionContainer {
     private final Map<Class<? extends Annotation>, ActionUpdateMatcher<?>> actionMatchers;
     private Map<Class<? extends Annotation>, List<Action>> actions;
 
+    /**
+     * Constructs a new {@link ActionContainerImpl} instance.
+     *
+     * @param actionCollector     the action collector; must not be {@code null}
+     * @param updateTypeResolvers the list of update type resolvers; must not be {@code null}
+     * @param actionUpdateMatchers the list of action update matchers; must not be {@code null}
+     */
     public ActionContainerImpl(ActionCollector actionCollector,
                                List<UpdateTypeResolver<?>> updateTypeResolvers,
                                List<ActionUpdateMatcher<?>> actionUpdateMatchers) {

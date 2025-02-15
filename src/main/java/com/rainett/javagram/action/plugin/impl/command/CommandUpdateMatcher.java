@@ -21,10 +21,14 @@ public class CommandUpdateMatcher extends AbstractActionUpdateMatcher<Command> {
      * Then, it checks if the command matches the expected command specified in the annotation.
      * @param annotation action's command annotation
      * @param update received Telegram update
-     * @return {@code true} if the update matches the annotation; {@code false} otherwise
+     * @return {@code true} if the update matches the annotation,
+     * or annotation value is empty; {@code false} otherwise
      */
     @Override
     protected boolean match(Command annotation, Update update) {
+        if (annotation.value().isEmpty()) {
+            return true;
+        }
         String expectedCommand = annotation.value().trim();
         String updateText = update.getMessage().getText();
         String extractedCommand = extractCommand(updateText);

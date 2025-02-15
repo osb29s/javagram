@@ -9,6 +9,11 @@ package com.rainett.javagram.exceptions;
  * </p>
  */
 public class ActionNotFoundException extends RuntimeException {
+    /**
+     * Constructs a new ActionNotFoundException with the specified error message.
+     *
+     * @param message the error message
+     */
     public ActionNotFoundException(String message) {
         super(message);
     }

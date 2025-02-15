@@ -23,5 +23,15 @@
     "command": "/hello",
     "text": "/hello@testbot",
     "expected": true
+  },
+  {
+    "command": "",
+    "text": "/hello@testbot",
+    "expected": true
+  },
+  {
+    "command": "",
+    "text": "/literallyanything@testbot",
+    "expected": true
   }
 ]

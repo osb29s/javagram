@@ -7,12 +7,25 @@ import java.util.List;
 import java.util.function.BiPredicate;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+/**
+ * Matcher for {@link Text} annotations.
+ * It checks if the text matches the criteria defined in the annotation.
+ */
 public class TextUpdateMatcher extends AbstractActionUpdateMatcher<Text> {
     private static final List<CaseMatcher> CASE_MATCHERS = List.of(
             new EqualsMatcher(),
             new RegexMatcher()
     );
 
+    /**
+     * Matches action's annotation and update.
+     * First, it checks equals and regex cases.
+     * Then, it combines prefix, suffix, and substring cases and matches at least one of them.
+     *
+     * @param annotation action's annotation
+     * @param update received update from Telegram
+     * @return {@code true} if the update matches the annotation; {@code false} otherwise
+     */
     @Override
     protected boolean match(Text annotation, Update update) {
         String messageText = update.getMessage().getText();
@@ -24,6 +37,10 @@ public class TextUpdateMatcher extends AbstractActionUpdateMatcher<Text> {
         return matchGeneral(annotation, messageText);
     }
 
+    /**
+     * Returns the annotation type supported by this matcher.
+     * @return the annotation type
+     */
     @Override
     public Class<Text> getAnnotationType() {
         return Text.class;

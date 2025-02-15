@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
  * Abstract class, extends the {@link ActionUpdateMatcher} interface
- * and provides encapsulates the common logic for matching updates with actions.
+ * and encapsulates the common logic for matching updates with actions.
  *
  * @param <T> the annotation type
  */

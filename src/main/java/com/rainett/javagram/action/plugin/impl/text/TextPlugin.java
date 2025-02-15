@@ -19,7 +19,6 @@ import org.springframework.stereotype.Component;
  *   <li>An {@link AnnotationComparator} to compare multiple {@code Text} annotations by their
  *   properties.</li>
  * </ul>
- * </p>
  */
 @Component
 public class TextPlugin implements UpdateTypePlugin<Text> {

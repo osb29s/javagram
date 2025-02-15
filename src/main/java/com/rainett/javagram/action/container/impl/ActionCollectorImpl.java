@@ -79,7 +79,7 @@ public class ActionCollectorImpl implements ActionCollector {
     private void sortActions(Class<? extends Annotation> annotationType, List<Action> actions) {
         Comparator<Action> comparator =
                 actionComparatorService.getActionComparator(annotationType);
-        actions.sort(comparator);
+        actions.sort(comparator.reversed());
     }
 
     /**

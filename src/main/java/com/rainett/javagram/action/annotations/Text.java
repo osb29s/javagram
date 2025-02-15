@@ -1,13 +1,16 @@
 package com.rainett.javagram.action.annotations;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * Class-annotation which processes text messages
  */
 @BotAction()
 @Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
 public @interface Text {
     /**
      * Specifies the exact text, that will trigger the action on an update

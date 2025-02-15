@@ -21,6 +21,10 @@ public class CommandResolver implements UpdateTypeResolver<Command> {
         return update.hasMessage() && update.getMessage().isCommand();
     }
 
+    /**
+     * Returns the annotation type that this resolver supports.
+     * @return the annotation type
+     */
     @Override
     public Class<Command> getAnnotationType() {
         return Command.class;

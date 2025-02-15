@@ -108,7 +108,7 @@ class ActionCollectorImplTest {
         assertEquals(2, actionsA.size());
         DummyActionA a1 = (DummyActionA) actionsA.get(0);
         DummyActionA a2 = (DummyActionA) actionsA.get(1);
-        assertTrue(a1.order() < a2.order(),
+        assertTrue(a1.order() > a2.order(),
                 "Actions for TestBotAnnotationA are not sorted correctly.");
 
         // Verify sorting for TestBotAnnotationB group.
@@ -116,7 +116,7 @@ class ActionCollectorImplTest {
         assertEquals(2, actionsB.size());
         DummyActionB b1 = (DummyActionB) actionsB.get(0);
         DummyActionB b2 = (DummyActionB) actionsB.get(1);
-        assertTrue(b1.order() < b2.order(),
+        assertTrue(b1.order() > b2.order(),
                 "Actions for TestBotAnnotationB are not sorted correctly.");
     }
 

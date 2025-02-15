@@ -8,6 +8,10 @@ package com.rainett.javagram.exceptions;
  * </p>
  */
 public class UnknownUpdateTypeException extends RuntimeException {
+    /**
+     * Constructs a new UnknownUpdateTypeException with the specified error message.
+     * @param message the error message
+     */
     public UnknownUpdateTypeException(String message) {
         super(message);
     }
