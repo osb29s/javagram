@@ -1,0 +1,37 @@
+[
+  {
+    "callbackData": "",
+    "annotationData": "",
+    "expected": true
+  },
+  {
+    "callbackData": "hello",
+    "annotationData": "",
+    "expected": true
+  },
+  {
+    "callbackData": "",
+    "annotationData": "hello",
+    "expected": false
+  },
+  {
+    "callbackData": "hello",
+    "annotationData": "hello",
+    "expected": true
+  },
+  {
+    "callbackData": "hello",
+    "annotationData": "world",
+    "expected": false
+  },
+  {
+    "callbackData": "hello:world",
+    "annotationData": "hello",
+    "expected": true
+  },
+  {
+    "callbackData": ":world",
+    "annotationData": "",
+    "expected": true
+  }
+]

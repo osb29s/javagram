@@ -17,13 +17,5 @@ public @interface Callback {
      *
      * @return callback name
      */
-    String value();
-
-    /**
-     * Weather the marked class should process all callbacks with given name,
-     * or only from the one who sent the origin message
-     *
-     * @return true, if callback is from message sender
-     */
-    boolean fromSender() default false;
+    String value() default "";
 }
