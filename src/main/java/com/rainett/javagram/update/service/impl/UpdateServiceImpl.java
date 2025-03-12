@@ -5,8 +5,9 @@ import com.rainett.javagram.action.container.ActionContainer;
 import com.rainett.javagram.exceptions.ActionNotFoundException;
 import com.rainett.javagram.exceptions.UnknownUpdateTypeException;
 import com.rainett.javagram.update.service.UpdateService;
-import lombok.RequiredArgsConstructor;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -20,9 +21,20 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class UpdateServiceImpl implements UpdateService {
     private final ActionContainer actionContainer;
+    private final Optional<DefaultAction> defaultActionOptional;
+
+    /**
+     * Constructor for UpdateService with optional default action.
+     * @param actionContainer container of actions
+     * @param defaultAction default action, executed when no suitable actions were found
+     */
+    public UpdateServiceImpl(ActionContainer actionContainer,
+                             @Autowired(required = false) DefaultAction defaultAction) {
+        this.actionContainer = actionContainer;
+        this.defaultActionOptional = Optional.ofNullable(defaultAction);
+    }
 
     /**
      * Processes an incoming Telegram update.
@@ -42,9 +54,17 @@ public class UpdateServiceImpl implements UpdateService {
                     botAction.getClass().getSimpleName(), update);
             botAction.run(update);
         } catch (ActionNotFoundException | UnknownUpdateTypeException e) {
-            log.warn(e.getMessage());
+            defaultActionOptional.ifPresentOrElse(
+                    action -> executeDefaultAction(update, action),
+                    () -> log.warn(e.getMessage())
+            );
         } catch (Exception e) {
             log.error("Error processing update: {}", update, e);
         }
+    }
+
+    private static void executeDefaultAction(Update update, DefaultAction action) {
+        log.info("Executing default action for update: {}", update);
+        action.run(update);
     }
 }

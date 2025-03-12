@@ -26,6 +26,9 @@ class UpdateServiceImplTest {
     @Mock
     private Action action;
 
+    @Mock
+    private DefaultAction defaultAction;
+
     @InjectMocks
     private UpdateServiceImpl updateService;
 
@@ -64,10 +67,24 @@ class UpdateServiceImplTest {
         when(actionContainer.findByUpdate(update)).thenThrow(
                 new UnknownUpdateTypeException("Unknown update type"));
 
+        updateService = new UpdateServiceImpl(actionContainer, null);
         updateService.handleUpdate(update);
 
         verify(actionContainer, times(1)).findByUpdate(update);
         verify(action, never()).run(any());
+    }
+
+    @Test
+    void handleUpdate_DefaultAction() {
+        Update update = mock(Update.class);
+        when(actionContainer.findByUpdate(update)).thenThrow(
+                new UnknownUpdateTypeException("Unknown update type"));
+        updateService = new UpdateServiceImpl(actionContainer, defaultAction);
+
+        updateService.handleUpdate(update);
+
+        verify(actionContainer, times(1)).findByUpdate(update);
+        verify(defaultAction, times(1)).run(any());
     }
 
     @Test
