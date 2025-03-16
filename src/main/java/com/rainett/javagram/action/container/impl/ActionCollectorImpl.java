@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -92,11 +93,14 @@ public class ActionCollectorImpl implements ActionCollector {
      */
     private Class<? extends Annotation> extractAnnotationType(Action action) {
         Objects.requireNonNull(action, "Action must not be null");
-        Annotation[] annotations = action.getClass().getAnnotations();
-        for (Annotation annotation : annotations) {
-            if (annotation.annotationType().isAnnotationPresent(BotAction.class)) {
-                return annotation.annotationType();
+        Class<?> targetClass = action.getClass();
+        while (targetClass != null && targetClass != Object.class) {
+            for (Annotation annotation : targetClass.getAnnotations()) {
+                if (AnnotationUtils.findAnnotation(annotation.annotationType(), BotAction.class) != null) {
+                    return annotation.annotationType();
+                }
             }
+            targetClass = targetClass.getSuperclass();
         }
         throw new IllegalStateException(
                 String.format("Cannot find required annotation for action [%s].",

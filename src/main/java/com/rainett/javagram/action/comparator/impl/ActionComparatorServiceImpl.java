@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
 /**
@@ -109,7 +110,7 @@ public class ActionComparatorServiceImpl implements ActionComparatorService {
      */
     private static <T extends Annotation> T extractAnnotation(Action action,
                                                               Class<T> annotationClass) {
-        T annotation = action.getClass().getAnnotation(annotationClass);
+        T annotation = AnnotationUtils.findAnnotation(action.getClass(), annotationClass);
         if (annotation == null) {
             throw new IllegalArgumentException(String.format(
                     "Expected annotation [%s] not found on action class [%s].",

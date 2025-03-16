@@ -2,6 +2,7 @@ package com.rainett.javagram.action.actionmatcher;
 
 import com.rainett.javagram.action.Action;
 import java.lang.annotation.Annotation;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
@@ -15,7 +16,7 @@ public abstract class AbstractActionUpdateMatcher<T extends Annotation>
 
     @Override
     public boolean test(Action action, Update update) {
-        T annotation = action.getClass().getAnnotation(getAnnotationType());
+        T annotation = AnnotationUtils.findAnnotation(action.getClass(), getAnnotationType());
         return match(annotation, update);
     }
 
