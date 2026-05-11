@@ -86,7 +86,12 @@ public class TextUpdateMatcher extends AbstractActionUpdateMatcher<Text> {
     private static class RegexMatcher implements CaseMatcher {
         @Override
         public boolean test(Text text, String messageText) {
-            return messageText.matches(text.regex());
+            try {
+                return messageText.matches(text.regex());
+            } catch (java.util.regex.PatternSyntaxException e) {
+                throw new IllegalArgumentException(
+                        "@Text regex is invalid: \"" + text.regex() + "\"", e);
+            }
         }
 
         @Override

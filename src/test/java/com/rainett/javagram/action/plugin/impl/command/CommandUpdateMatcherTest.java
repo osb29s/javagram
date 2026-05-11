@@ -1,6 +1,8 @@
 package com.rainett.javagram.action.plugin.impl.command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,6 +58,28 @@ class CommandUpdateMatcherTest {
     @Test
     void returnsTextAnnotationType() {
         assertEquals(Command.class, commandUpdateMatcher.getAnnotationType());
+    }
+
+    @Test
+    void returnsFalseWhenMessageTextIsNull() {
+        Command annotation = new CommandImpl("/start");
+        Message message = new Message();
+        Update update = new Update();
+        update.setMessage(message);
+
+        assertFalse(commandUpdateMatcher.match(annotation, update));
+    }
+
+    @Test
+    void throwsWhenAnnotationValueMissingSlash() {
+        Command annotation = new CommandImpl("start");
+        Message message = new Message();
+        message.setText("/start");
+        Update update = new Update();
+        update.setMessage(message);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> commandUpdateMatcher.match(annotation, update));
     }
 
     @Data

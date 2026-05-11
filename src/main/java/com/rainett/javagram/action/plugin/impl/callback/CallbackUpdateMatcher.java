@@ -31,6 +31,9 @@ public class CallbackUpdateMatcher extends AbstractActionUpdateMatcher<Callback>
 
     private String extractCallbackKey(Update update) {
         String callbackData = update.getCallbackQuery().getData();
+        if (callbackData == null) {
+            return "";
+        }
         if (callbackData.contains(DATA_DELIMITER)) {
             return callbackData.split(DATA_DELIMITER)[0];
         }

@@ -29,8 +29,15 @@ public class CommandUpdateMatcher extends AbstractActionUpdateMatcher<Command> {
         if (annotation.value().isEmpty()) {
             return true;
         }
-        String expectedCommand = annotation.value().trim();
         String updateText = update.getMessage().getText();
+        if (updateText == null) {
+            return false;
+        }
+        String expectedCommand = annotation.value().trim();
+        if (!expectedCommand.startsWith("/")) {
+            throw new IllegalArgumentException(
+                    "@Command value must start with '/': \"" + expectedCommand + "\"");
+        }
         String extractedCommand = extractCommand(updateText);
         return expectedCommand.equals(extractedCommand);
     }

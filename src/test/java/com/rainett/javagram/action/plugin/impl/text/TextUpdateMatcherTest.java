@@ -1,6 +1,7 @@
 package com.rainett.javagram.action.plugin.impl.text;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,6 +49,25 @@ class TextUpdateMatcherTest {
     @Test
     void returnsTextAnnotationType() {
         assertEquals(Text.class, textUpdateMatcher.getAnnotationType());
+    }
+
+    @Test
+    void throwsWhenRegexIsInvalid() {
+        AnnotationData data = new AnnotationData();
+        data.setEquals("");
+        data.setContains("");
+        data.setStartsWith("");
+        data.setEndsWith("");
+        data.setRegex("(unclosed");
+        Text annotation = new TestTextAnnotation(data);
+
+        Message message = new Message();
+        message.setText("hello");
+        Update update = new Update();
+        update.setMessage(message);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> textUpdateMatcher.match(annotation, update));
     }
 
     @Data

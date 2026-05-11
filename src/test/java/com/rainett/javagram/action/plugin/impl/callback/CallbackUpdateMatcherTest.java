@@ -1,6 +1,7 @@
 package com.rainett.javagram.action.plugin.impl.callback;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,6 +48,16 @@ class CallbackUpdateMatcherTest {
     @Test
     void returnsAnnotationType() {
         assertEquals(Callback.class, callbackUpdateMatcher.getAnnotationType());
+    }
+
+    @Test
+    void returnsFalseWhenCallbackDataIsNull() {
+        Callback annotation = new TestAnnotation("someKey");
+        CallbackQuery callbackQuery = new CallbackQuery();
+        Update update = new Update();
+        update.setCallbackQuery(callbackQuery);
+
+        assertFalse(callbackUpdateMatcher.match(annotation, update));
     }
 
     @Data

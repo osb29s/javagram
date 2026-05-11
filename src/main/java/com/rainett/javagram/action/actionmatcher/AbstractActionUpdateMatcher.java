@@ -17,6 +17,9 @@ public abstract class AbstractActionUpdateMatcher<T extends Annotation>
     @Override
     public boolean test(Action action, Update update) {
         T annotation = AnnotationUtils.findAnnotation(action.getClass(), getAnnotationType());
+        if (annotation == null) {
+            return false;
+        }
         return match(annotation, update);
     }
 
